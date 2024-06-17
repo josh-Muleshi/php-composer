@@ -1,7 +1,10 @@
 <?php
 
-require_once 'class/Select.php';
-require_once 'class/Radio.php';
+require_once 'vendor/autoload.php';
+use App\{
+    Radio,
+    Select
+};
 
 $radio = new Radio('gender', 'male', true, ['class' => 'radio']);
 $radio1 = new Radio(null,'femal', false, ['class' => 'radio']);

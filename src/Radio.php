@@ -1,6 +1,7 @@
 <?php
 
-require_once 'HTMLElement.php';
+namespace App;
+use App\HTMLElement;
 
 class Radio extends HTMLElement
 {
