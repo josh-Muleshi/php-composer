@@ -2,16 +2,13 @@
 namespace App;
 use App\HTMLElement;
 
-class Radio extends HTMLElement {
-    public function __construct($name, $value = '', $checked = false, $attributes = []) {
+class Input extends HTMLElement {
+    public function __construct(private string $type, private string $name, private string $value = '', $attributes = []) {
         parent::__construct('input', array_merge($attributes, [
-            'type' => 'radio',
+            'type' => $type,
             'name' => $name,
             'value' => $value
         ]), null);
-        if ($checked) {
-            $this->attributes['checked'] = 'checked';
-        }
     }
 
     public function render() {

@@ -1,44 +1,27 @@
 <?php
-
 namespace App;
 use App\HTMLElement;
 
 class Form extends HTMLElement {
+    private $elements = [];
 
-    private object $object;
-    private array $contents;
+    public function __construct(private string $action, private string $method = 'POST', array $attributes = []) {
+        parent::__construct('form', array_merge($attributes, [
+            'action' => $action,
+            'method' => $method,
+            'enctype' => 'multipart/form-data'
+        ]), null);
+    }
 
-    public function __construct(
-        public array $data,
-    ){}
+    public function addElement($element) {
+        $this->elements[] = $element;
+    }
 
-    private function getAttributs(array $data): string 
-    {
-        $view = "";
-        foreach($data as $key => $value){
-            $view .= ''. $key .'=' . $value . ' ';
+    public function render() {
+        $content = '';
+        foreach ($this->elements as $element) {
+            $content .= $element->render();
         }
-        return $view;
+        return "<{$this->tag}{$this->getAttributes()}>{$content}</{$this->tag}>";
     }
-
-    public function addElement(object $object){
-        $this->object = $object;
-        $this->contents[] = $this->object;
-    }
-
-    private function content(array $contents){
-        $content = "";
-        foreach($contents as $value){
-            $content .= $value.'<br>';
-        }
-
-        return $content;
-    }
-
-    #[\Override]
-    public function render(): string
-    {
-        return '<form'. $this->getAttributs($this->data) .'>'. $this->content($this->contents) .'</form>';
-    }
-    
 }

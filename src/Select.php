@@ -1,50 +1,22 @@
 <?php
-
 namespace App;
 use App\HTMLElement;
 
-class Select extends HTMLElement
-{
-    public function __construct(
-        private string $name,
-        private array $options = [],
-        private array $attributs = [],
-    )
-    {}
+class Select extends HTMLElement {
+    private $options = [];
 
-    private function view(string $options, string $attributs): string
-    {
-        return '<select name="'. $this->name .'" '. $attributs .'">'. $options . '</select>';
+    public function __construct($name, $options = [], $attributes = []) {
+        parent::__construct('select', array_merge($attributes, [
+            'name' => $name
+        ]), null);
+        $this->options = $options;
     }
 
-    private function getAttribut(): string
-    {
-        $attributs = "";
-        foreach ($this->attributs as $key => $attribut) {
-            $attributs .= ''. $key .'=' . $attribut . ' ';
+    public function render() {
+        $optionsHTML = '';
+        foreach ($this->options as $value => $text) {
+            $optionsHTML .= "<option value=\"$value\">$text</option>";
         }
-        return $attributs;
-    }
-
-    private function getOptions(): string
-    {
-        $options = "";
-        foreach ($this->options as $key => $option) {
-            $options .= '<option value="'. $key.'">'. $option .'</option>';
-        }
-        return $options;
-    }
-
-    #[\Override]
-    public function render(): string
-    {
-        $options = $this->getOptions();
-        $attributs = $this->getAttribut();
-        return $this->view($options, $attributs);
-    }
-
-    public function __toString(): string
-    {
-        return $this->render();
+        return "<{$this->tag}{$this->getAttributes()}>{$optionsHTML}</{$this->tag}>";
     }
 }
