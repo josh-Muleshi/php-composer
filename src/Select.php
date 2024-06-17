@@ -35,6 +35,7 @@ class Select extends HTMLElement
         return $options;
     }
 
+    #[\Override]
     public function render(): string
     {
         $options = $this->getOptions();

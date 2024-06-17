@@ -1,8 +1,9 @@
 <?php
 
-// namespace App\Classes;
+namespace App;
+use App\HTMLElement;
 
-class Form{
+class Form extends HTMLElement {
 
     private object $object;
     private array $contents;
@@ -34,6 +35,7 @@ class Form{
         return $content;
     }
 
+    #[\Override]
     public function render(): string
     {
         return '<form'. $this->getAttributs($this->data) .'>'. $this->content($this->contents) .'</form>';

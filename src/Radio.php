@@ -29,6 +29,7 @@ class Radio extends HTMLElement
         return $attributs;
     }
 
+    #[\Override]
     public function render(): string
     {
         
