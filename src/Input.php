@@ -2,8 +2,10 @@
 namespace App;
 use App\HTMLElement;
 
-class Input extends HTMLElement {
-    public function __construct(private string $type, private string $name, private string $value = '', $attributes = []) {
+class Input extends HTMLElement 
+{
+    public function __construct(private string $type, private string $name, private string $value = '', $attributes = []) 
+    {
         parent::__construct('input', array_merge($attributes, [
             'type' => $type,
             'name' => $name,
@@ -11,7 +13,8 @@ class Input extends HTMLElement {
         ]), null);
     }
 
-    public function render() {
+    public function render(): string 
+    {
         return "<{$this->tag}{$this->getAttributes()} />";
     }
 }

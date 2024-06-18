@@ -2,18 +2,22 @@
 namespace App;
 use App\HTMLElement;
 
-class Table extends HTMLElement {
+class Table extends HTMLElement 
+{
     private $rows = [];
 
-    public function __construct($attributes = []) {
+    public function __construct($attributes = []) 
+    {
         parent::__construct('table', $attributes, null);
     }
 
-    public function addRow($row) {
+    public function addRow($row) 
+    {
         $this->rows[] = $row;
     }
 
-    public function render() {
+    public function render(): string 
+    {
         $content = '';
         foreach ($this->rows as $row) {
             $content .= '<tr>';

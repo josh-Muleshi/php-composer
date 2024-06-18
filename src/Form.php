@@ -2,10 +2,12 @@
 namespace App;
 use App\HTMLElement;
 
-class Form extends HTMLElement {
-    private $elements = [];
+class Form extends HTMLElement 
+{
+    private array $elements = [];
 
-    public function __construct(private string $action, private string $method = 'POST', array $attributes = []) {
+    public function __construct(private string $action, private string $method = 'POST', array $attributes = []) 
+    {
         parent::__construct('form', array_merge($attributes, [
             'action' => $action,
             'method' => $method,
@@ -13,14 +15,16 @@ class Form extends HTMLElement {
         ]), null);
     }
 
-    public function addElement($element) {
+    public function addElement(object $element) 
+    {
         $this->elements[] = $element;
     }
 
-    public function render() {
+    public function render(): string 
+    {
         $content = '';
         foreach ($this->elements as $element) {
-            $content .= $element->render();
+            $content .= $element->render() . '<br><br>';
         }
         return "<{$this->tag}{$this->getAttributes()}>{$content}</{$this->tag}>";
     }

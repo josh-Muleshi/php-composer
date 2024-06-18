@@ -1,22 +1,25 @@
 <?php
 
 namespace App;
-class Session {
-    public static function start() {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+class Session 
+{
+    public static function start() 
+    {
+        if (session_status() == PHP_SESSION_NONE) session_start();
     }
 
-    public static function set($key, $value) {
+    public static function set(mixed $key, mixed $value) 
+    {
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key, $default = null) {
+    public static function get(mixed $key, mixed $default = null): mixed 
+    {
         return $_SESSION[$key] ?? $default;
     }
 
-    public static function destroy() {
+    public static function destroy() 
+    {
         session_destroy();
     }
 }

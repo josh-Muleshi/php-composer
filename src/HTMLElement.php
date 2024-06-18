@@ -10,7 +10,8 @@ abstract class HTMLElement
         protected ?String $content
     ) {}
 
-    protected function getAttributes() {
+    protected function getAttributes(): string 
+    {
         $result = '';
         foreach ($this->attributes as $key => $value) {
             $result .= " $key=\"$value\"";
@@ -18,7 +19,8 @@ abstract class HTMLElement
         return $result;
     }
 
-    public function render() {
+    public function render(): string 
+    {
         return "<{$this->tag}{$this->getAttributes()}>{$this->content}</{$this->tag}>";
     }
 }

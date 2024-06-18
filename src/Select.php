@@ -2,17 +2,20 @@
 namespace App;
 use App\HTMLElement;
 
-class Select extends HTMLElement {
+class Select extends HTMLElement 
+{
     private $options = [];
 
-    public function __construct($name, $options = [], $attributes = []) {
+    public function __construct($name, $options = [], $attributes = []) 
+    {
         parent::__construct('select', array_merge($attributes, [
             'name' => $name
         ]), null);
         $this->options = $options;
     }
 
-    public function render() {
+    public function render(): string 
+    {
         $optionsHTML = '';
         foreach ($this->options as $value => $text) {
             $optionsHTML .= "<option value=\"$value\">$text</option>";
