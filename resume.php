@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
 use App\{
-    Session,
+    // Session,
     Table
 };
-
+use App\Class\Session;
 Session::start();
 
 $name = Session::get('name', 'N/A');

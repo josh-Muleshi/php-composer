@@ -3,7 +3,8 @@
     "description": "Ce projet vise à créer une application CRUD (Create, Read, Update, Delete) pour gérer une liste de contacts. Au lieu d'utiliser une base de données, nous utiliserons des fichiers pour stocker les données des contacts.",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Class\\": "class/"
         }
     },
     "authors": [
